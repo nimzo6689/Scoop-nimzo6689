@@ -1,0 +1,38 @@
+{
+    "homepage": "https://chigusa-web.com/clibor/",
+    "description": "This is a simple and highly functional clipboard history software.",
+    "version": "2.1.2",
+    "license": "Freeware|https://chigusa-web.com/clibor/term/",
+    "url": "https://dforest.watch.impress.co.jp/library/c/clibor/10713/clibor.zip",
+    "hash": "7c904488a12f03e71b153aacaf3ae355cc5d19199799466370af2b8a5add17ce",
+    "extract_dir": "Clibor",
+    "bin": "Clibor.exe",
+    "shortcuts": [
+        [
+            "Clibor.exe",
+            "Clibor"
+        ]
+    ],
+    "pre_install": [
+        "# Initialize 1st step: create a Clibor.xml file.",
+        "Start-Process -FilePath $dir\\Clibor.exe",
+        "Start-Sleep -s 1",
+        "Get-Process -Name Clibor | Stop-Process",
+        "Start-Sleep -s 1",
+        "# Initialize 2nd step: create any *.dat files.",
+        "Start-Process -FilePath $dir\\Clibor.exe",
+        "Start-Sleep -s 1",
+        "Get-Process -Name Clibor | Stop-Process"
+    ],
+    "persist": [
+        "ct",
+        "Clibor.xml",
+        "excl.dat",
+        "frmt.dat",
+        "ww.dat"
+    ],
+    "checkver": {
+        "url": "https://forest.watch.impress.co.jp/library/software/clibor/",
+        "re": "v([\\d.]+)（\\d{2}/\\d{2}/\\d{2}）"
+    }
+}
