@@ -1,13 +1,9 @@
 {
     "homepage": "http://nanno.dip.jp/softlib/man/rlogin/",
+    "description": "RLogin is a terminal software that runs on Windows.",
     "version": "2.25.5",
     "bin": "RLogin.exe",
-    "shortcuts": [
-        [
-            "RLogin.exe",
-            "RLogin"
-        ]
-    ],
+    "shortcuts": [["RLogin.exe", "RLogin"]],
     "checkver": {
         "github": "https://github.com/kmiya-culti/RLogin/"
     },
