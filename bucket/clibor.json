@@ -13,23 +13,18 @@
             "Clibor"
         ]
     ],
-    "pre_install": [
-        "# Initialize 1st step: create a Clibor.xml file.",
-        "Start-Process -FilePath $dir\\Clibor.exe",
-        "Start-Sleep -s 1",
-        "Get-Process -Name Clibor | Stop-Process",
-        "Start-Sleep -s 1",
-        "# Initialize 2nd step: create any *.dat files.",
-        "Start-Process -FilePath $dir\\Clibor.exe",
-        "Start-Sleep -s 1",
-        "Get-Process -Name Clibor | Stop-Process"
-    ],
-    "persist": [
-        "ct",
-        "Clibor.xml",
-        "excl.dat",
-        "frmt.dat",
-        "ww.dat"
+    "post_install": [
+        "# See official Q&A page. https://chigusa-web.com/clibor/qa/#i",
+        "$versions = Get-ChildItem -Path (appdir $app) -Name -Exclude current `",
+        "    | Sort-Object {[System.Version]$_} -Descending",
+        "if ($versions.Length -gt 1) {",
+        "  $pre_version_dir = Join-Path (appdir $app) $versions[1]",
+        "  $migration_dir = Join-Path (appdir $app) 'migration'",
+        "  New-Item -ItemType Directory -Force $migration_dir",
+        "  Copy-Item $pre_version_dir $migration_dir",
+        "  Copy-Item -Force $original_dir $migration_dir",
+        "  Copy-Item -Force $migration_dir $original_dir",
+        "}"
     ],
     "checkver": {
         "url": "https://forest.watch.impress.co.jp/library/software/clibor/",
