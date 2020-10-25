@@ -23,7 +23,7 @@
         "  Copy-Item -Force $pre_version_dir $migration_dir",
         "  Copy-Item -Force $original_dir $migration_dir",
         "  Copy-Item -Force $migration_dir $original_dir",
-        "  Remove-Item -Force $migration_dir | Out-Null",
+        "  Remove-Item -Force -Recurse $migration_dir | Out-Null",
         "}"
     ],
     "checkver": {
