@@ -20,10 +20,11 @@
         "if ($versions.Length -gt 1) {",
         "  $pre_version_dir = Join-Path (appdir $app) $versions[1]",
         "  $migration_dir = Join-Path (appdir $app) 'migration'",
-        "  New-Item -ItemType Directory -Force $migration_dir",
+        "  New-Item -ItemType Directory -Force $migration_dir | Out-Null",
         "  Copy-Item $pre_version_dir $migration_dir",
         "  Copy-Item -Force $original_dir $migration_dir",
         "  Copy-Item -Force $migration_dir $original_dir",
+        "  Remove-Item -Force $migration_dir | Out-Null",
         "}"
     ],
     "checkver": {
